@@ -42,4 +42,3 @@ PHP 开发技术交流（ QQ 群 513350915）
 |ThinkLibrary|1.2.2|ThinkPHP扩展组件|https://github.com/zoujingli/ThinkLibrary|
 |WeChatDeveloper|1.2.2|微信公众号组件|https://github.com/zoujingli/WeChatDeveloper|
 |WeOpenDeveloper|1.1.3|微信开放平台组件|https://github.com/zoujingli/WeOpenDeveloper|
-
