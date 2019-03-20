@@ -20,11 +20,11 @@ return [
     // 服务器地址
     'hostname' => '127.0.0.1',
     // 数据库名
-    'database' => 'framework',
+    'database' => 'alliance',
     // 用户名
-    'username' => 'framework',
+    'username' => 'alliance',
     // 密码
-    'password' => 'x5RDsnwX8EcLkXCN',
+    'password' => 'PHJyRbDkZt2TwYih',
     // 端口
     'hostport' => '3306',
 ];
