@@ -25,15 +25,6 @@ use think\Db;
  */
 class Index extends Controller
 {
-    //宝塔
-    private $BT_KEY = "4fbXDL0UbqGaqq5MI02kbgoziIH8yy0y";  //接口密钥
-    private $BT_PANEL = "http://117.50.50.137:1212";	   //面板地址
-    //宝塔
-    //如果希望多台面板，可以在实例化对象时，将面板地址与密钥传入
-    public function __construct($bt_panel = null,$bt_key = null){
-        if($bt_panel) $this->BT_PANEL = $bt_panel;
-        if($bt_key) $this->BT_KEY = $bt_key;
-    }
 
     /**
      * 显示后台首页
@@ -61,61 +52,7 @@ class Index extends Controller
         $this->title = '后台首页';
         $this->think_ver = \think\App::VERSION;
         $this->mysql_ver = Db::query('select version() as ver')[0]['ver'];
-
-        //拼接URL地址
-        $url = $this->BT_PANEL.'/system?action=GetSystemTotal';
-        //准备POST数据
-        $p_data = $this->GetKeyData();		//取签名
-        //请求面板接口
-        $result = $this->HttpPostCookie($url,$p_data);
-        //解析JSON数据
-        $data = json_decode($result,true);
-        $this->assign('bt',$data);
         $this->fetch();
-    }
-    /**
-     * 宝塔
-     * 构造带有签名的关联数组
-     */
-    private function GetKeyData(){
-        $now_time = time();
-        $p_data = array(
-            'request_token'	=>	md5($now_time.''.md5($this->BT_KEY)),
-            'request_time'	=>	$now_time
-        );
-        return $p_data;
-    }
-
-    /**
-     * 宝塔
-     * 发起POST请求
-     * @param String $url 目标网填，带http://
-     * @param Array|String $data 欲提交的数据
-     * @return string
-     */
-    private function HttpPostCookie($url, $data,$timeout = 60)
-    {
-        //定义cookie保存位置
-        $cookie_file='./'.md5($this->BT_PANEL).'.cookie';
-        if(!file_exists($cookie_file)){
-            $fp = fopen($cookie_file,'w+');
-            fclose($fp);
-        }
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
-        curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_file);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        return $output;
     }
 
     /**

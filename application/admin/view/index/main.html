@@ -11,57 +11,66 @@
     <thead>
     <tr>
         <th class="text-left" colspan="2">系统信息</th>
-        <th class="text-left" colspan="2">产品团队</th>
+        <th class="text-left" colspan="2">产品名称</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td style="max-width:200px">framework 版本</td>
+        <td style="max-width:200px">Alliance 版本</td>
         <td>{:sysconf('app_version')}</td>
-        <td style="max-width:200px">产品名称</td>
-        <td>framework</td>
+        <!--<td style="max-width:200px">产品名称</td>-->
+        <style>
+            .box{
+                width:600px;
+                margin: 100px auto;
+                /*border:1px solid #0094ff;*/
+                padding: 35px;
+                background-image:-webkit-linear-gradient(left,#3498db 0%,#f47920 10%,#d71345 20%,#f7acbc 30%,#ffd400 40%,#3498db 50%,#f47920 60%,#d71345 70%,#f7acbc 80%,#ffd400 90%,#3498db 100%);
+                color:transparent;
+                background-size:200% 100%;
+                -webkit-background-clip:text;
+                font-size:4em;
+                text-align:center;
+                animation: move 3s infinite linear;
+            }
+            @keyframes move{
+                0%{
+                    background-position:0 0;
+                }
+                100%{
+                    background-position:-100% 0;
+                }
+            }
+        </style>
+        <td colspan="2" rowspan="8"><div style="text-align:center;font-size: 100px" class='box'>Alliance</div></td>
     </tr>
     <tr>
         <td>ThinkPHP 版本</td>
         <td>{$think_ver}</td>
-        <td>CPU核心数</td>
-        <td>{$bt.cpuNum}</td>
     </tr>
     <tr>
         <td>服务器操作系统</td>
         <td>{:php_uname('s')}</td>
-        <td>CPU 使用率 (百分比)</td>
-        <td>{$bt.cpuRealUsed}</td>
     </tr>
     <tr>
         <td>WEB运行环境</td>
         <td>{:php_sapi_name()}</td>
-        <td>物理内存容量 (MB)</td>
-        <td>{$bt.memTotal}</td>
     </tr>
     <tr>
         <td>MySQL数据库版本</td>
         <td>{$mysql_ver}</td>
-        <td>已使用的物理内存 (MB)</td>
-        <td>{$bt.memRealUsed}</td>
     </tr>
     <tr>
         <td>运行PHP版本</td>
         <td>{$Think.PHP_VERSION}</td>
-        <td>可用的物理内存 (MB)</td>
-        <td>{$bt.memFree}</td>
     </tr>
     <tr>
         <td>上传大小限制</td>
         <td>{:ini_get('upload_max_filesize')}</td>
-        <td>缓存化的内存 (MB)</td>
-        <td>{$bt.memCached}</td>
     </tr>
     <tr>
         <td>POST大小限制</td>
         <td>{:ini_get('post_max_size')}</td>
-        <td>系统缓冲 (MB)</td>
-        <td>{$bt.memBuffers}</td>
     </tr>
     </tbody>
 </table>
